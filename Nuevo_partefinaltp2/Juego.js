@@ -8,12 +8,10 @@ class Juego {
     this.p = new Personaje();
     this.botonInicio = new Boton("INICIAR", width / 2, height * 0.75, 100, 40);
     this.botonReinicio = new Boton("REINICIAR", width / 2, height * 0.75, 100, 40);
-    this.enemigos = [];  // Cambié el nombre del array de "basura" a "enemigos"
+    this.enemigos = [];
     this.cant = 6;
     this.velocidadBase = 2;
-    this.img = loadImage("data/estado.png"); // Cargar la imagen de fondo
-
-    // Crear los objetos "enemigos"
+    this.img = loadImage("data/estado.png");
     for (let i = 0; i < this.cant; i++) {
       this.enemigos[i] = new Enemigo(this.velocidadBase);
     }
@@ -39,13 +37,13 @@ class Juego {
   pantallaJugando() {
     image(this.img, 0, 0, width, height);
     this.velocidadBase += 0.001;
-    for (let i = 0; i < this.enemigos.length; i++) {  // Cambié el nombre aquí también
+    for (let i = 0; i < this.enemigos.length; i++) {
       this.enemigos[i].actualizar(this.velocidadBase);
     }
     this.p.actualizar();
-    for (let i = 0; i < this.enemigos.length; i++) {  // Cambié el nombre aquí también
+    for (let i = 0; i < this.enemigos.length; i++) {
       if (this.enemigos[i].evaluaColision(this.p.x, this.p.y)) {
-        this.estado = "fin";  // Fin del juego si hay colisión
+        this.estado = "fin";
         break;
       }
     }
