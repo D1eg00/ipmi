@@ -1,11 +1,10 @@
-class Enemigo {  // Cambié el nombre de la clase aquí
+class Enemigo {
   constructor(velocidadBase) {
     this.tipo = int(random(0, 2));
     this.reiniciarUbicacion();
     this.lado = 80;
     this.velocidadBase = velocidadBase;
     this.img = loadImage("data/Mono_" + this.tipo + ".png");
-    //this.img1 = loadImage("data/estado.png");
   }
 
   actualizar(velocidadIncrementada) {
@@ -22,7 +21,6 @@ class Enemigo {  // Cambié el nombre de la clase aquí
 
   dibujar() {
     push();
-    //image(this.img1, 0, 0, width, height);
     translate(this.x, this.y);
     imageMode(CENTER);
     image(this.img, 0, 0, this.lado, this.lado);
