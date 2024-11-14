@@ -8,14 +8,14 @@ class Juego {
     this.p = new Personaje();
     this.botonInicio = new Boton("INICIAR", width / 2, height * 0.75, 100, 40);
     this.botonReinicio = new Boton("REINICIAR", width / 2, height * 0.75, 100, 40);
-    this.basura = [];
+    this.enemigos = [];  // Cambié el nombre del array de "basura" a "enemigos"
     this.cant = 6;
     this.velocidadBase = 2;
     this.img = loadImage("data/estado.png"); // Cargar la imagen de fondo
 
-    // Crear los objetos "basura"
+    // Crear los objetos "enemigos"
     for (let i = 0; i < this.cant; i++) {
-      this.basura[i] = new Basura(this.velocidadBase);
+      this.enemigos[i] = new Enemigo(this.velocidadBase);
     }
   }
 
@@ -23,7 +23,7 @@ class Juego {
     if (this.estado === "inicio") {
       this.pantallaInicio();
     } else if (this.estado === "jugando") {
-      this.pantallaJugando(); // Llama a pantallaJugando cuando el estado es "jugando"
+      this.pantallaJugando();
     } else if (this.estado === "fin") {
       this.pantallaFin();
     }
@@ -37,25 +37,15 @@ class Juego {
   }
 
   pantallaJugando() {
-    // Dibujar la imagen de fondo
-   
     image(this.img, 0, 0, width, height);
- pop();
-    // Aumentar gradualmente la velocidad de los objetos "basura"
     this.velocidadBase += 0.001;
-
-    // Actualizar y dibujar cada objeto "basura"
-    for (let i = 0; i < this.basura.length; i++) {
-      this.basura[i].actualizar(this.velocidadBase);
+    for (let i = 0; i < this.enemigos.length; i++) {  // Cambié el nombre aquí también
+      this.enemigos[i].actualizar(this.velocidadBase);
     }
-
-    // Actualizar y dibujar al personaje
     this.p.actualizar();
-
-    // Verificar colisiones con los objetos "basura"
-    for (let i = 0; i < this.basura.length; i++) {
-      if (this.basura[i].evaluaColision(this.p.x, this.p.y)) {
-        this.estado = "fin"; // Fin del juego si hay colisión
+    for (let i = 0; i < this.enemigos.length; i++) {  // Cambié el nombre aquí también
+      if (this.enemigos[i].evaluaColision(this.p.x, this.p.y)) {
+        this.estado = "fin";  // Fin del juego si hay colisión
         break;
       }
     }
@@ -70,7 +60,6 @@ class Juego {
     textAlign(CENTER, CENTER);
     text("Fin del Juego", width / 2, height / 2 - 40);
     textSize(16);
-    //text("Haz clic en REINICIAR para jugar de nuevo", width / 2, height / 2);
     this.botonReinicio.actualizar();
     pop();
   }

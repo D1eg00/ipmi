@@ -18,9 +18,6 @@ class Personaje {
     translate(this.x, this.y);
     image(this.img, 0, 0, this.ancho, this.alto);
     pop();
-    
-    
-    
   }
 
   mover() {

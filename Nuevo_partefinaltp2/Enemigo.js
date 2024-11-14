@@ -1,4 +1,4 @@
-class Basura {
+class Enemigo {  // Cambié el nombre de la clase aquí
   constructor(velocidadBase) {
     this.tipo = int(random(0, 2));
     this.reiniciarUbicacion();
